@@ -4,9 +4,13 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-revm-delegate-impl = { version = "0.1.0", path = "impl" }
-delegate = "0.12"
+delegate-trait.path = "../delegate-trait"
+revm-delegate-impl.path = "impl"
+
 revm = "4.0"
+
+[build-dependencies]
+delegate-trait.path = "../delegate-trait"
 
 [workspace]
 members = ["impl"]

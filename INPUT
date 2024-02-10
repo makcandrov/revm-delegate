@@ -1,0 +1,29 @@
+crate_ident = revm_delegate;
+crate_impl_ident = revm_delegate_impl;
+macro_ident = RevmDelegate;
+macro_helper_ident = revm_delegate;
+
+dependencies = [
+    revm
+];
+
+traits = {
+    pub trait revm::Inspector<DB: revm::Database> {
+        fn initialize_interp(&mut self, interp: &mut revm::interpreter::Interpreter, context: &mut revm::EvmContext<DB>);
+        fn step(&mut self, interp: &mut revm::interpreter::Interpreter, context: &mut revm::EvmContext<DB>);
+    }
+
+    pub trait revm::Database {
+        fn basic(&mut self, address: revm::primitives::Address) -> Result<Option<revm::primitives::AccountInfo>, Self::Error>;
+        fn block_hash(&mut self, number: revm::primitives::U256) -> Result<revm::primitives::B256, Self::Error>;
+        fn code_by_hash(&mut self, code_hash: revm::primitives::B256) -> Result<revm::primitives::Bytecode, Self::Error>;
+        fn storage(&mut self, address: revm::primitives::Address, index: revm::primitives::U256) -> Result<revm::primitives::U256, Self::Error>;
+    }
+
+    pub trait revm::DatabaseRef {
+        fn basic_ref(&self, address: revm::primitives::Address) -> Result<Option<revm::primitives::AccountInfo>, Self::Error>;
+        fn block_hash_ref(&self, number: revm::primitives::U256) -> Result<revm::primitives::B256, Self::Error>;
+        fn code_by_hash_ref(&self, code_hash: revm::primitives::B256) -> Result<revm::primitives::Bytecode, Self::Error>;
+        fn storage_ref(&self, address: revm::primitives::Address, index: revm::primitives::U256) -> Result<revm::primitives::U256, Self::Error>;
+    }
+};
