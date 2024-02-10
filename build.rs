@@ -1,1 +1,1 @@
-::delegate_trait::build_delegate!{}
+::delegate_trait::build_delegate! {}

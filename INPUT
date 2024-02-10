@@ -46,10 +46,18 @@ traits = {
         fn storage(&mut self, address: ::revm::primitives::Address, index: ::revm::primitives::U256) -> ::std::result::Result<::revm::primitives::U256, Self::Error>;
     }
 
+    pub trait ::revm::DatabaseCommit {
+        fn commit(&mut self, changes: ::revm::precompile::HashMap<::revm::primitives::Address, ::revm::primitives::Account>);
+    }
+
     pub trait ::revm::DatabaseRef {
         fn basic_ref(&self, address: ::revm::primitives::Address) ->::std::result::Result<::std::option::Option<::revm::primitives::AccountInfo>, Self::Error>;
         fn block_hash_ref(&self, number: ::revm::primitives::U256) ->::std::result::Result<::revm::primitives::B256, Self::Error>;
         fn code_by_hash_ref(&self, code_hash: ::revm::primitives::B256) ->::std::result::Result<revm::primitives::Bytecode, Self::Error>;
         fn storage_ref(&self, address: ::revm::primitives::Address, index: ::revm::primitives::U256) ->::std::result::Result<::revm::primitives::U256, Self::Error>;
+    }
+
+    pub trait ::revm::GetInspector<DB: ::revm::Database> {
+        fn get_inspector(&mut self) -> &mut dyn ::revm::Inspector<DB>;
     }
 };
