@@ -1,46 +1,46 @@
-use delegate_trait::TraitConfig;
+use delegate_trait::{Context, TraitConfig};
 use proc_macro2::TokenStream;
 use quote::quote;
-
-use crate::expand::Context;
 
 pub fn impl_database_ref(context: &Context, config: &TraitConfig) -> syn::Result<TokenStream> {
     let to = &config.to;
     let trait_ident = &config.ident;
+    let root = quote! { ::revm_delegate::__private };
+    let trait_path = quote! { #root::revm:: #trait_ident };
+    let wi = config.wi.clone().unwrap_or_default();
 
     let methods = quote! {
+        #wi
 
-        ::revm_delegate::__private::delegate! { to #to {
-            #[through(::revm_delegate::__private::revm::DatabaseRef)]
+        #root::delegate! { to #to {
+            #[through(#trait_path)]
             fn basic_ref(
                 &self,
-                address: ::revm_delegate::__private::revm::primitives::Address
-            ) -> Result<Option<::revm_delegate::__private::revm::AccountInfo>, Self::Error>;
+                address: #root::revm::primitives::Address
+            ) -> Result<Option<#root::revm::primitives::AccountInfo>, Self::Error>;
 
-            #[through(::revm_delegate::__private::revm::DatabaseRef)]
+            #[through(#trait_path)]
             fn block_hash_ref(
                 &self,
-                number: ::revm_delegate::__private::revm::primitives::U256
-            ) -> Result<::revm_delegate::__private::revm::primitives::B256, Self::Error>;
+                number: #root::revm::primitives::U256
+            ) -> Result<#root::revm::primitives::B256, Self::Error>;
 
-            #[through(::revm_delegate::__private::revm::DatabaseRef)]
+            #[through(#trait_path)]
             fn code_by_hash_ref(
                 &self,
-                code_hash: ::revm_delegate::__private::revm::primitives::B256
-            ) -> Result<::revm_delegate::__private::revm::primitives::Bytecode, Self::Error>;
+                code_hash: #root::revm::primitives::B256
+            ) -> Result<#root::revm::primitives::Bytecode, Self::Error>;
 
-            #[through(::revm_delegate::__private::revm::DatabaseRef)]
+            #[through(#trait_path)]
             fn storage_ref(
                 &self,
-                address: ::revm_delegate::__private::revm::primitives::Address,
-                index: ::revm_delegate::__private::revm::primitives::U256
-            ) -> Result<::revm_delegate::__private::revm::primitives::U256, Self::Error>
+                address: #root::revm::primitives::Address,
+                index: #root::revm::primitives::U256
+            ) -> Result<#root::revm::primitives::U256, Self::Error>;
         }}
     };
 
-    let trait_for = quote! {
-        ::revm_delegate::__private::revm::#trait_ident for
-    };
+    let res = config.wrap_methods(context, &trait_path, &config.generics, &methods);
 
-    Ok(context.in_impl(&trait_for, &methods))
+    Ok(res)
 }
