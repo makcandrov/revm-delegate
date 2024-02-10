@@ -1,0 +1,12 @@
+[package]
+name = "revm-delegate"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+revm-delegate-impl = { version = "0.1.0", path = "impl" }
+delegate = "0.12"
+revm = "4.0"
+
+[workspace]
+members = ["impl"]
