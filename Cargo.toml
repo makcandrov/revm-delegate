@@ -7,7 +7,7 @@ edition = "2021"
 delegate-trait.git = "https://github.com/makcandrov/delegate-trait"
 revm-delegate-impl.path = "impl"
 
-revm = "4.0"
+revm.git = "https://github.com/bluealloy/revm"
 
 [build-dependencies]
 delegate-trait.git = "https://github.com/makcandrov/delegate-trait"
