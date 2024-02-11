@@ -56,8 +56,4 @@ traits = {
         fn code_by_hash_ref(&self, code_hash: ::revm::primitives::B256) ->::std::result::Result<revm::primitives::Bytecode, Self::Error>;
         fn storage_ref(&self, address: ::revm::primitives::Address, index: ::revm::primitives::U256) ->::std::result::Result<::revm::primitives::U256, Self::Error>;
     }
-
-    pub trait ::revm::GetInspector<DB: ::revm::Database> {
-        fn get_inspector(&mut self) -> &mut dyn ::revm::Inspector<DB>;
-    }
 };

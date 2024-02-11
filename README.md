@@ -7,7 +7,6 @@ Procedural macro to automatically delegate [`revm`](https://github.com/bluealloy
 - [`Database`](https://docs.rs/revm/latest/revm/trait.Database.html)
 - [`DatabaseCommit`](https://docs.rs/revm/latest/revm/trait.DatabaseCommit.html)
 - [`DatabaseRef`](https://docs.rs/revm/latest/revm/trait.DatabaseRef.html)
-- [`GetInspector`](https://docs.rs/revm/latest/revm/trait.GetInspector.html)
 - [`Inspector`](https://docs.rs/revm/latest/revm/trait.Inspector.html)
 
 ## Usage
