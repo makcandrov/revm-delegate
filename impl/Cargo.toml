@@ -7,10 +7,10 @@ edition = "2021"
 proc-macro = true
 
 [dependencies]
-delegate-trait = { path = "../../delegate-trait" }
+delegate-trait.git = "https://github.com/makcandrov/delegate-trait"
 proc-macro2 = "1"
 quote = "1"
 syn = { version = "2", features = ["full"] }
 
 [build-dependencies]
-delegate-trait.path = "../../delegate-trait"
+delegate-trait.git = "https://github.com/makcandrov/delegate-trait"
