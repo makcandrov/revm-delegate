@@ -3,10 +3,6 @@ crate_impl_ident = revm_delegate_impl;
 macro_ident = RevmDelegate;
 macro_helper_ident = revm_delegate;
 
-dependencies = [
-    revm
-];
-
 traits = {
     pub trait ::revm::Inspector<DB: ::revm::Database> {
         fn initialize_interp(&mut self, interp: &mut ::revm::interpreter::Interpreter, context: &mut ::revm::EvmContext<DB>);
