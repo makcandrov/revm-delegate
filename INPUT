@@ -1,7 +1,6 @@
 crate_ident = revm_delegate;
 crate_impl_ident = revm_delegate_impl;
-macro_ident = RevmDelegate;
-macro_helper_ident = revm_delegate;
+macro_ident = revm_delegate;
 
 traits = {
     pub trait ::revm::Inspector<DB: ::revm::Database> {
