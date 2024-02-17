@@ -12,7 +12,6 @@ traits = {
             &mut self,
             context: &mut ::revm::EvmContext<DB>,
             inputs: &mut ::revm::interpreter::CallInputs,
-            return_memory_offset: ::core::ops::Range<usize>,
         ) -> ::std::option::Option<::revm::interpreter::CallOutcome>;
         fn call_end(
             &mut self,

@@ -11,4 +11,4 @@ revm-delegate-impl.path = "impl"
 delegate-trait.git = "https://github.com/makcandrov/delegate-trait"
 
 [dev-dependencies]
-revm = "5"
+revm = "6.0.0"
