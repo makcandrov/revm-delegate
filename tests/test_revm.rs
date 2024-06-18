@@ -9,3 +9,8 @@ struct WrapDatabaseAndInsepctor<DB, I> {
     db: DB,
     insp: I,
 }
+
+#[test]
+fn test() {
+    let _ = WrapDatabaseAndInsepctor {db: (), insp: () };
+}
