@@ -7,7 +7,12 @@ traits = {
         fn initialize_interp(&mut self, interp: &mut ::revm::interpreter::Interpreter, context: &mut ::revm::EvmContext<DB>);
         fn step(&mut self, interp: &mut ::revm::interpreter::Interpreter, context: &mut ::revm::EvmContext<DB>);
         fn step_end(&mut self, interp: &mut ::revm::interpreter::Interpreter, context: &mut ::revm::EvmContext<DB>);
-        fn log(&mut self, context: &mut ::revm::EvmContext<DB>, log: &::revm::primitives::Log);
+        fn log(
+            &mut self,
+            interp: &mut ::revm::interpreter::Interpreter,
+            context: &mut ::revm::EvmContext<DB>,
+            log: &::revm::primitives::Log,
+        );
         fn call(
             &mut self,
             context: &mut ::revm::EvmContext<DB>,

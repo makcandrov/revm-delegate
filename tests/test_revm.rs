@@ -13,5 +13,5 @@ struct WrapDatabaseAndInsepctor<DB, I> {
 
 #[test]
 fn test() {
-    let _ = WrapDatabaseAndInsepctor {db: (), insp: () };
+    let _ = WrapDatabaseAndInsepctor { db: (), insp: () };
 }
